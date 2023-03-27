@@ -198,7 +198,7 @@ if (typeof(localStorage.getItem('currentslide'))!='undefined' && localStorage.ge
 	
  } 
  
-	if(nextSlideNo <= 2){//number 3 is number of total slides present
+	if(nextSlideNo <= 8){//number 3 is number of total slides present
 	// alert(nextSlideNo);
 	var tempNext = localStorage.getItem(currentContentId+"_"+contentName+"_slideNo_"+nextSlideNo);
 
@@ -302,10 +302,10 @@ if(direction == 'b') {
 //custom slide changes ends here....
 
 	else{
-	if(page_id <= 2){
+	if(page_id <= 8){
 		page_id = page_id + 1;
 		//alert(page_id);
-		if(page_id == 3){
+		if(page_id == 9){
             flag=1;
         }
 	}
@@ -385,10 +385,28 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><video width="1024" height="768" autoplay><source src="slide1/1.mp4" type="video/mp4"></video></div><div class="s2_14"><img src="slide2/s2_14.png"/></div><div class="s2_pop1" onclick="s2_pop1()"></div><div class="s2_c1ose1" onclick="s2_close1()"></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background1"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="background2"><img src="slide1/2.jpg" width="1024" height="768" alt=""></div><div class="bottleWrap pulseIn" onclick="bottleWrap()"><div class="bottle"><img src="slide1/3.png"></div></div>';
 	break;
 	case 2:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><img src="slide2/s2_1.png"/></div><div class="s2_2"><img src="slide2/s2_2.png"/></div><div class="s2_3"><img src="slide2/s2_3.png"/></div><div class="s2_4"><img src="slide2/s2_4.png"/></div><div class="s2_5"><img src="slide2/s2_5.png"/></div><div class="s2_6"><img src="slide2/s2_6.png"/></div><div class="s2_7"><img src="slide2/s2_7.png"/></div><div class="s2_8"><img src="slide2/s2_8.png"/></div><div class="s2_9"><img src="slide2/s2_9.png"/></div><div class="s2_10"><img src="slide2/s2_10.png"/></div><div class="s2_11"><img src="slide2/s2_11.png"/></div><div class="s2_12"><img src="slide2/s2_12.png"/></div><div class="s2_13"><img src="slide2/s2_13.png"/></div><div class="s2_14"><img src="slide2/s2_14.png"/></div><div class="s2_pop1" onclick="s2_pop1()"></div><div class="s2_c1ose1" onclick="s2_close1()"></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="background"><img src="slide2/1.jpg" width="1024" height="768" alt=""></div>';
+	break;
+    case 3:
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide3/1.jpg" width="1024" height="768" alt=""></div>';
+	break;
+    case 4:
+	content='<link rel="stylesheet" type="text/css" href="slide4/slide4.css" media="screen"/><div class="background1"><img src="slide4/1.jpg" width="1024" height="768" alt=""></div><div class="background2"><img src="slide4/2.jpg" width="1024" height="768" alt=""></div><div class="bottleWrap pulseIn" onclick="bottleWrap()"><div class="bottle"><img src="slide4/3.png"></div></div>';
+	break;
+    case 5:
+	content='<link rel="stylesheet" type="text/css" href="slide5/slide5.css" media="screen"/><div class="background"><img src="slide5/1.jpg" width="1024" height="768" alt=""></div>';
+	break;
+	case 6:
+	content='<link rel="stylesheet" type="text/css" href="slide6/slide6.css" media="screen"/><div class="background"><img src="slide6/1.jpg" width="1024" height="768" alt=""></div>';
+	break;
+	case 7:
+	content='<link rel="stylesheet" type="text/css" href="slide7/slide7.css" media="screen"/><div class="background"><img src="slide7/1.jpg" width="1024" height="768" alt=""></div>';
+	break;
+	case 8:
+	content='<link rel="stylesheet" type="text/css" href="slide8/slide8.css" media="screen"/><div class="background"><img src="slide8/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
 }
 
@@ -531,16 +549,9 @@ $(document).ready(function(){
 	})
 })
 
-/*--------------------- animation javascript -----------------------*/
 
-function s2_pop1() {
-	$('.s2_14').css("display","block");
-	$('.s2_c1ose1').css("display","block");
-	$('.s2_pop1').css("display","none");
-}
-
-function s2_close1() {
-	$('.s2_14').css("display","none");
-	$('.s2_c1ose1').css("display","none");
-	$('.s2_pop1').css("display","block");
+function bottleWrap() {
+	$('.background2').css("display","block");
+	$('.bottleWrap').removeClass("pulseIn");
+	$('.bottleWrap').addClass("slideToleft");
 }
