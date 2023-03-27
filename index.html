@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="cache-control" content="max-age=200"/>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>LYFE</title>
+<link rel="stylesheet" type="text/css" href="animate.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="global.css" media="screen"/>
+
+<script src="jquery.min.js" type="text/javascript" language="javascript"></script>
+<script src="jquery.mobile.custom.min.js" type="text/javascript" language="javascript"></script>
+<script src="jquery.touchSwipe.min.js" type="text/javascript" language="javascript"></script>
+</head>
+
+<body>
+<div id="wrapper" rel="1">
+  <div class="menu"> <img src="menu.png" width="37" alt=""> </div>
+  <div class="slide_arrow">
+    <div class="left_arrow" ><img src="left_arrow.png" alt="previous icon" width="23" height="23" ></div>
+    <div class="right_arrow" ><img src="right_arrow.png" alt="next icon" width="23" height="23"></div>
+  </div>
+  <div id="main_content"></div>
+  <div class="reference active">
+    <div class="box">
+      <div class="slide_jumper">
+		  <div class="slides"><img src="thumbs/01.png" alt=""></div>
+          <div class="slides"><img src="thumbs/02.png" alt=""></div>   
+      </div>
+    </div>
+    <div class="box_btn"></div>
+  </div>
+</div>
+<div id="myconsole"></div>
+<div id="click_through" > </div>
+<script src="global.js" type="text/javascript" language="javascript"></script> 
+<script>
+var startTime = Date.now();
+//step 1:
+var temp = localStorage.getItem(currentContentId+"_"+contentName+"_slideNo_1");
+	
+	if(temp == null){			
+			localStorage.setItem(currentContentId+"_"+contentName+"_slideNo_1" ,startTime);
+			localStorage.setItem(currentContentId+"_"+contentName+"_totalTime_slideNo_1",0);
+			//to capture start time of 1st slide in db format
+			var startTime1InDBFormat = currentTimeInDatabaseFormat();
+			//alert(startTime1InDBFormat);
+			localStorage.setItem(currentContentId+"_"+contentName+"_StartTime_1" ,startTime1InDBFormat);	
+	}
+//step 1 ends here..
+
+$(document).ready(function(){
+  // jQuery(".next").bind(event, function(){
+  //     document.location = 'VoltarenVAsb/VoltarenVAsb.html';
+  //     });
+var selectedContentPath = 'slide1/';
+//  document.getElementById("main_content").innerHTML='<object type="text/html" width="1024px" height="768px" data="'+selectedContentPath+"Dlight1.htm"+'"></object>';
+
+//custom slide additional code begins here....
+
+if (typeof(localStorage.getItem("currentcustomslideflag"))!='undefined' && localStorage.getItem("currentcustomslideflag") =='true'){
+	var custcomslideid = parseInt(localStorage.getItem("currentcontentcustomslideId")) ;
+	
+switch(custcomslideid){
+	case 1:
+	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><video width="1024" height="768" autoplay><source src="slide1/1.mp4" type="video/mp4"></video></div><div class="s2_14"><img src="slide2/s2_14.png"/></div><div class="s2_pop1" onclick="s2_pop1()"></div><div class="s2_c1ose1" onclick="s2_close1()"></div>';
+	break;
+	case 2:
+	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><img src="slide2/s2_1.png"/></div><div class="s2_2"><img src="slide2/s2_2.png"/></div><div class="s2_3"><img src="slide2/s2_3.png"/></div><div class="s2_4"><img src="slide2/s2_4.png"/></div><div class="s2_5"><img src="slide2/s2_5.png"/></div><div class="s2_6"><img src="slide2/s2_6.png"/></div><div class="s2_7"><img src="slide2/s2_7.png"/></div><div class="s2_8"><img src="slide2/s2_8.png"/></div><div class="s2_9"><img src="slide2/s2_9.png"/></div><div class="s2_10"><img src="slide2/s2_10.png"/></div><div class="s2_11"><img src="slide2/s2_11.png"/></div><div class="s2_12"><img src="slide2/s2_12.png"/></div><div class="s2_13"><img src="slide2/s2_13.png"/></div><div class="s2_14"><img src="slide2/s2_14.png"/></div><div class="s2_pop1" onclick="s2_pop1()"></div><div class="s2_c1ose1" onclick="s2_close1()"></div>';
+	break;
+}
+
+	$("#main_content").html(content);
+	  localStorage.setItem("gotoNextPrevBrand" ,1);//if one than next if 2 than prev
+
+//custom slide additional code ends here....	 
+	 
+}else{
+
+$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><video width="1024" height="768" autoplay><source src="slide1/1.mp4" type="video/mp4"></video></div><div class="s2_14"><img src="slide2/s2_14.png"/></div><div class="s2_pop1" onclick="s2_pop1()"></div><div class="s2_c1ose1" onclick="s2_close1()"></div>');
+}
+});
+</script> 
+
+</body>
+</html>
