@@ -5,7 +5,7 @@
 <meta http-equiv="cache-control" content="max-age=200"/>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
-<title>RSC</title>
+<title>Ascender</title>
 <link rel="stylesheet" type="text/css" href="animate.css" media="screen"/>
 <link rel="stylesheet" type="text/css" href="global.css" media="screen"/>
 
@@ -27,12 +27,7 @@
       <div class="slide_jumper">
 		  <div class="slides"><img src="thumbs/01.png" alt=""></div>
           <div class="slides"><img src="thumbs/02.png" alt=""></div>
-          <div class="slides"><img src="thumbs/03.png" alt=""></div>
-          <div class="slides"><img src="thumbs/04.png" alt=""></div>
-          <div class="slides"><img src="thumbs/05.png" alt=""></div>       
-          <div class="slides"><img src="thumbs/06.png" alt=""></div>      
-          <div class="slides"><img src="thumbs/07.png" alt=""></div>      
-          <div class="slides"><img src="thumbs/08.png" alt=""></div>      
+          <div class="slides"><img src="thumbs/03.png" alt=""></div>    
       </div>
     </div>
     <div class="box_btn"></div>
@@ -70,30 +65,15 @@ if (typeof(localStorage.getItem("currentcustomslideflag"))!='undefined' && local
 	
 	switch(custcomslideid){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background1"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="background2"><img src="slide1/2.jpg" width="1024" height="768" alt=""></div><div class="bottleWrap pulseIn" onclick="bottleWrap()"><div class="bottle"><img src="slide1/3.png"></div></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
 	case 2:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="background"><img src="slide2/1.jpg" width="1024" height="768" alt=""></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><img src="slide2/1.png"/></div><div class="s2_2"><img src="slide2/2.png"/></div><div class="s2_3"><img src="slide2/3.png"/></div><div class="furic_wrap"><div class="s2_4"><img src="slide2/4.png"/></div><div class="s2_5"><img src="slide2/5.png"/></div></div><div class="s2_6"><img src="slide2/6.png"/></div>';
 	break;
     case 3:
 	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide3/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
-    case 4:
-	content='<link rel="stylesheet" type="text/css" href="slide4/slide4.css" media="screen"/><div class="background1"><img src="slide4/1.jpg" width="1024" height="768" alt=""></div><div class="background2"><img src="slide4/2.jpg" width="1024" height="768" alt=""></div><div class="bottleWrap pulseIn" onclick="bottleWrap()"><div class="bottle"><img src="slide4/3.png"></div></div>';
-	break;
-    case 5:
-	content='<link rel="stylesheet" type="text/css" href="slide5/slide5.css" media="screen"/><div class="background"><img src="slide5/1.jpg" width="1024" height="768" alt=""></div>';
-	break;
-	case 6:
-	content='<link rel="stylesheet" type="text/css" href="slide6/slide6.css" media="screen"/><div class="background"><img src="slide6/1.jpg" width="1024" height="768" alt=""></div>';
-	break;
-	case 7:
-	content='<link rel="stylesheet" type="text/css" href="slide7/slide7.css" media="screen"/><div class="background"><img src="slide7/1.jpg" width="1024" height="768" alt=""></div>';
-	break;
-	case 8:
-	content='<link rel="stylesheet" type="text/css" href="slide8/slide8.css" media="screen"/><div class="background"><img src="slide8/1.jpg" width="1024" height="768" alt=""></div>';
-	break;
-}
+	}
 
 	$("#main_content").html(content);
 	  localStorage.setItem("gotoNextPrevBrand" ,1);//if one than next if 2 than prev
@@ -102,7 +82,7 @@ if (typeof(localStorage.getItem("currentcustomslideflag"))!='undefined' && local
 	 
 }else{
 
-$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background1"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="background2"><img src="slide1/2.jpg" width="1024" height="768" alt=""></div><div class="bottleWrap pulseIn" onclick="bottleWrap()"><div class="bottle"><img src="slide1/3.png"></div></div>');
+$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1_1"><img src="slide1/1.png"/></div><div class="s1_2"><img src="slide1/2.png"/></div><div class="s1_3_wrap pulseUp" onclick="startAnime();"><div class="s1_3"><img id="s1_3" src="slide1/3.png"/></div></div><div class="s1_4"><img src="slide1/4.png"/></div><div class="s1_5"><img src="slide1/5.png"/></div><div class="s1_6"><img src="slide1/6.png"/></div>');
 }
 });
 </script> 
