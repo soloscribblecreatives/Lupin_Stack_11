@@ -5,7 +5,7 @@
 <meta http-equiv="cache-control" content="max-age=200"/>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
-<title>Ascender</title>
+<title>Blue Eyes</title>
 <link rel="stylesheet" type="text/css" href="animate.css" media="screen"/>
 <link rel="stylesheet" type="text/css" href="global.css" media="screen"/>
 
@@ -27,7 +27,9 @@
       <div class="slide_jumper">
 		  <div class="slides"><img src="thumbs/01.png" alt=""></div>
           <div class="slides"><img src="thumbs/02.png" alt=""></div>
-          <div class="slides"><img src="thumbs/03.png" alt=""></div>    
+          <div class="slides"><img src="thumbs/03.png" alt=""></div>
+          <div class="slides"><img src="thumbs/04.png" alt=""></div>    
+          <div class="slides"><img src="thumbs/05.png" alt=""></div>    
       </div>
     </div>
     <div class="box_btn"></div>
@@ -37,20 +39,6 @@
 <div id="click_through" > </div>
 <script src="global.js" type="text/javascript" language="javascript"></script> 
 <script>
-var startTime = Date.now();
-//step 1:
-var temp = localStorage.getItem(currentContentId+"_"+contentName+"_slideNo_1");
-	
-	if(temp == null){			
-			localStorage.setItem(currentContentId+"_"+contentName+"_slideNo_1" ,startTime);
-			localStorage.setItem(currentContentId+"_"+contentName+"_totalTime_slideNo_1",0);
-			//to capture start time of 1st slide in db format
-			var startTime1InDBFormat = currentTimeInDatabaseFormat();
-			//alert(startTime1InDBFormat);
-			localStorage.setItem(currentContentId+"_"+contentName+"_StartTime_1" ,startTime1InDBFormat);	
-	}
-//step 1 ends here..
-
 $(document).ready(function(){
   // jQuery(".next").bind(event, function(){
   //     document.location = 'VoltarenVAsb/VoltarenVAsb.html';
@@ -58,32 +46,9 @@ $(document).ready(function(){
 var selectedContentPath = 'slide1/';
 //  document.getElementById("main_content").innerHTML='<object type="text/html" width="1024px" height="768px" data="'+selectedContentPath+"Dlight1.htm"+'"></object>';
 
-//custom slide additional code begins here....
 
-if (typeof(localStorage.getItem("currentcustomslideflag"))!='undefined' && localStorage.getItem("currentcustomslideflag") =='true'){
-	var custcomslideid = parseInt(localStorage.getItem("currentcontentcustomslideId")) ;
-	
-	switch(custcomslideid){
-	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div>';
-	break;
-	case 2:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s2_1"><img src="slide2/1.png"/></div><div class="s2_2"><img src="slide2/2.png"/></div><div class="s2_3"><img src="slide2/3.png"/></div><div class="furic_wrap"><div class="s2_4"><img src="slide2/4.png"/></div><div class="s2_5"><img src="slide2/5.png"/></div></div><div class="s2_6"><img src="slide2/6.png"/></div>';
-	break;
-    case 3:
-	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide3/1.jpg" width="1024" height="768" alt=""></div>';
-	break;
-	}
+$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.gif" width="1024" height="768" alt=""></div>');
 
-	$("#main_content").html(content);
-	  localStorage.setItem("gotoNextPrevBrand" ,1);//if one than next if 2 than prev
-
-//custom slide additional code ends here....	 
-	 
-}else{
-
-$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1_1"><img src="slide1/1.png"/></div><div class="s1_2"><img src="slide1/2.png"/></div><div class="s1_3_wrap pulseUp" onclick="startAnime();"><div class="s1_3"><img id="s1_3" src="slide1/3.png"/></div></div><div class="s1_4"><img src="slide1/4.png"/></div><div class="s1_5"><img src="slide1/5.png"/></div><div class="s1_6"><img src="slide1/6.png"/></div>');
-}
 });
 </script> 
 
