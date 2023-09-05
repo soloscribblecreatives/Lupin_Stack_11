@@ -12,11 +12,11 @@
 
 .s1_2 {
 	position: absolute;
-  left: 429px;
-  top: 291px;
-  width: 384px;
-  height: 336px;
-	animation: heartBeat 1s 2;
+  left: 421px;
+  top: 450px;
+  width: 514px;
+  height: 136px;
+	animation: zoomIn 0.5s;
 	animation-delay: 0.2s;
 	animation-fill-mode: both;
 	z-index: 3;

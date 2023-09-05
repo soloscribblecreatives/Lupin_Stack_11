@@ -12,11 +12,11 @@
 
 .s1_2 {
 	position: absolute;
-  left: 429px;
-  top: 291px;
-  width: 384px;
-  height: 336px;
-	animation: heartBeat 1s 2;
+  left: 460px;
+  top: 472px;
+  width: 436px;
+  height: 51px;
+	animation: fadeInUp 0.5s;
 	animation-delay: 0.2s;
 	animation-fill-mode: both;
 	z-index: 3;
@@ -24,12 +24,12 @@
 
 .s1_3 {
 	position: absolute;
-  left: 675px;
-  top: 89px;
-  width: 167px;
-  height: 141px;
-	animation: fadeInUp 0.5s;
-	animation-delay: 0.3s;
+  left: 383px;
+  top: 517px;
+  width: 590px;
+  height: 136px;
+	animation: zoomIn 0.5s;
+	animation-delay: 0.8s;
 	animation-fill-mode: both;
 	z-index: 3;
 }

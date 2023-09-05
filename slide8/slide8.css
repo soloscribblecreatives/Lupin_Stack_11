@@ -12,24 +12,25 @@
 
 .s1_2 {
 	position: absolute;
-  left: 429px;
-  top: 291px;
-  width: 384px;
-  height: 336px;
-	animation: heartBeat 1s 2;
+  left: 259px;
+  top: 415px;
+  width: 136px;
+  height: 145px;
+	animation: revealVertical 0.5s;
 	animation-delay: 0.2s;
 	animation-fill-mode: both;
+	clip: rect(0px,136px,0px,0px);
 	z-index: 3;
 }
 
 .s1_3 {
 	position: absolute;
-  left: 675px;
-  top: 89px;
-  width: 167px;
-  height: 141px;
-	animation: fadeInUp 0.5s;
-	animation-delay: 0.3s;
+  left: 596px;
+  top: 334px;
+  width: 373px;
+  height: 319px;
+	animation: stampIn 0.2s;
+	animation-delay: 1s;
 	animation-fill-mode: both;
 	z-index: 3;
 }
@@ -131,5 +132,29 @@
     opacity: 1;
     -webkit-transform: none;
     transform: none;
+  }
+}
+
+
+@keyframes revealVertical {
+  0% {
+    clip: rect(0px,136px,0px,0px);
+	opacity: 1;
+  }
+  
+  100% {
+    clip: rect(0px,136px,145px,0px);
+	opacity: 1;
+  }
+}
+
+
+@keyframes revealVerticalRev {
+  0% {
+    clip: rect(200px,300px,200px,0px);
+  }
+  
+  100% {
+    clip: rect(0px,300px,200px,0px);
   }
 }
