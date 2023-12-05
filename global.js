@@ -159,10 +159,10 @@ if(direction == 'b') {
 }else {
 	
 
-	if(page_id <= 1){
+	if(page_id <= 2){
 		page_id = page_id + 1;
 		//alert(page_id);
-		if(page_id == 2){
+		if(page_id == 3){
             flag=1;
         }
 	}
@@ -249,9 +249,11 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1_1"><img src="slide1/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2" onclick="option1();"><img id="s1_2" src="slide1/s1_2.png"/></div><div class="s1_3" onclick="option2();"><img id="s1_3" src="slide1/s1_3.png"/></div><div class="s1_4" onclick="option3();"><img id="s1_4" src="slide1/s1_4.png"/></div><div class="s1_5" onclick="option4();"><img id="s1_5" src="slide1/s1_5.png"/></div><div class="s1_6" onclick="option5();"><img id="s1_6" src="slide1/s1_6.png"/></div><div class="s1_7" onclick="option7();"><img src="slide1/s1_7.png" width="1024" height="768" alt=""/></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/Base1.png" width="1024" height="768" alt=""></div><div class="hit_1"><img src="slide1/Option1.png" width="1024" height="768" alt=""/></div><div class="hit_pop1" onclick="hit_pop1()"></div><div class="hit_2"><img src="slide1/Option2.png" width="1024" height="768" alt=""/></div><div class="hit_pop2" onclick="hit_pop2()"></div><div class="hit_3"><img src="slide1/Option3.png" width="1024" height="768" alt=""/></div><div class="hit_pop3" onclick="hit_pop3()"></div><div class="hit_4"><img src="slide1/Option4.png" width="1024" height="768" alt=""/></div><div class="hit_pop4" onclick="hit_pop4()"></div><div class="hit_5"><img src="slide1/Base2.png" width="1024" height="768" alt=""/></div>';
 	break;
-
+	case 2:
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1_1"><img src="slide2/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide2/s1_2.gif"/></div><div class="s1_3"><img src="slide2/s1_3.png"/></div>';
+	break;
 }
 
 return content;
@@ -405,29 +407,80 @@ $(document).ready(function(){
 })
 
 
-function option1() {
-	$(".s1_2").addClass("option1");
+/*--------------------- animation javascript -----------------------*/
+
+function hit_pop1() {
+	$('.hit_1').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop1').css("display","none");	
+	setTimeout(function(){
+		$('.hit_5').css("display","block");
+	}, 3000);
 }
 
-function option2() {
-	$(".s1_3").addClass("option2");
+function hit_pop2() {
+	$('.hit_2').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop2').css("display","none");
+	setTimeout(function(){
+		$('.hit_5').css("display","block");
+	}, 3000);
 }
 
-function option3() {
-	$(".s1_4").addClass("option3");
+function hit_pop3() {
+	$('.hit_3').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop3').css("display","none");
+	setTimeout(function(){
+		$('.hit_5').css("display","block");
+	}, 3000);
 }
 
-function option4() {
-	$(".s1_5").addClass("option4");
+function hit_pop4() {
+	$('.hit_4').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop4').css("display","none");
+	setTimeout(function(){
+		$('.hit_5').css("display","block");
+	}, 3000);
 }
 
-function option5() {
-	$(".s1_6").addClass("option5");
-	setTimeout(function() {
-		$('.s1_7').css("display","block");
-	}, 2000);
+
+
+
+
+function hit_pop5() {
+	$('.hit_5').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop5').css("display","none");
 }
 
-function option7() {
-	$('.s1_7').css("display","none");
+function hit_pop6() {
+	$('.hit_6').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop6').css("display","none");
+}
+
+function hit_pop7() {
+	$('.hit_7').css("display","block");
+	$('.hit_close1').css("display","block");
+	$('.hit_pop7').css("display","none");
+}
+
+function hit_close1() {
+	$('.hit_1').css("display","none");
+	$('.hit_2').css("display","none");
+	$('.hit_3').css("display","none");
+	$('.hit_4').css("display","none");
+	$('.hit_5').css("display","none");
+	$('.hit_6').css("display","none");
+	$('.hit_7').css("display","none");
+	$('.hit_pop1').css("display","block");
+	$('.hit_pop2').css("display","block");
+	$('.hit_pop3').css("display","block");
+	$('.hit_pop4').css("display","block");
+	$('.hit_pop5').css("display","block");
+	$('.hit_pop6').css("display","block");
+	$('.hit_pop7').css("display","block");
+	$('.hit_close1').css("display","none");
 }
