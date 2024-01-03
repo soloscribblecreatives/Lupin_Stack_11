@@ -29,37 +29,37 @@
 
 .hit_pop1 {
 	position: absolute;
-  left: 56px;
-  top: 313px;
-  width: 443px;
-  height: 138px;
+  left: 77px;
+  top: 254px;
+  width: 385px;
+  height: 144px;
 	z-index: 10;
 }
 
 .hit_pop2 {
 	position: absolute;
-  left: 522px;
-  top: 313px;
-  width: 443px;
-  height: 138px;
+  left: 557px;
+  top: 254px;
+  width: 385px;
+  height: 144px;
 	z-index: 10;
 }
 
 .hit_pop3 {
 	position: absolute;
-  left: 56px;
-  top: 473px;
-  width: 443px;
-  height: 138px;
+  left: 77px;
+  top: 465px;
+  width: 385px;
+  height: 144px;
 	z-index: 10;
 }
 
 .hit_pop4 {
 	position: absolute;
-  left: 522px;
-  top: 473px;
-  width: 443px;
-  height: 138px;
+  left: 557px;
+  top: 465px;
+  width: 385px;
+  height: 144px;
 	z-index: 10;
 }
 
