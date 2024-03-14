@@ -1,105 +1,7 @@
-* {
+*{
 	margin: 0px;
 	padding: 0px;
 }
-
-.background {
-	position: absolute;
-	width: 1024px;
-	height: 768px;
-	z-index: 1;
-}
-
-.takeCover {
-	position: absolute;
-  left: 0px;
-  top: 639px;
-  width: 76px;
-  height: 54px;
-	z-index: 10;
-}
-
-.hit_1, .hit_2, .hit_3, .hit_4, .hit_5, .hit_6, .hit_7  {
-  position: absolute;
-  width: 1024px;
-  height: 768px;
-  display: none;
-  z-index: 15;
-}
-
-.hit_pop1 {
-	position: absolute;
-  left: 77px;
-  top: 254px;
-  width: 385px;
-  height: 144px;
-	z-index: 10;
-}
-
-.hit_pop2 {
-	position: absolute;
-  left: 557px;
-  top: 254px;
-  width: 385px;
-  height: 144px;
-	z-index: 10;
-}
-
-.hit_pop3 {
-	position: absolute;
-  left: 77px;
-  top: 465px;
-  width: 385px;
-  height: 144px;
-	z-index: 10;
-}
-
-.hit_pop4 {
-	position: absolute;
-  left: 557px;
-  top: 465px;
-  width: 385px;
-  height: 144px;
-	z-index: 10;
-}
-
-.hit_pop5 {
-	position: absolute;
-  left: 659px;
-  top: 435px;
-  width: 140px;
-  height: 186px;
-	z-index: 10;
-}
-
-.hit_pop6 {
-	position: absolute;
-  left: 805px;
-  top: 586px;
-  width: 140px;
-  height: 105px;
-	z-index: 10;
-}
-
-.hit_pop7 {
-	position: absolute;
-  left: 805px;
-  top: 479px;
-  width: 140px;
-  height: 105px;
-	z-index: 10;
-}
-
-.hit_close1 {
-	position: absolute;
-	width: 1024px;
-	height: 768px;
-	display: none;
-	z-index: 20;
-}
-
-
-
 
 .s1_1 {
 	position: absolute;
@@ -110,35 +12,47 @@
 
 .s1_2 {
 	position: absolute;
-  left: 312px;
-  top: 615px;
-  width: 72px;
-  height: 46px;
-	animation: fllipInX 0.5s;
-	animation-delay: 0s;
+  left: 59px;
+  top: 415px;
+  width: 428px;
+  height: 41px;
+	animation: revealHorizontal 0.7s;
+	animation-delay: 0.3s;
 	animation-fill-mode: both;
+	clip: rect(0px,0px,41px,0px);
 	z-index: 5;
 }
 
-.s1_3 {
-	position: absolute;
-  left: 437px;
-  top: 571px;
-  width: 368px;
-  height: 70px;
-	animation: flashLong 4s infinite;
-	animation-delay: 0s;
-	animation-fill-mode: both;
-	z-index: 5;
-}
-
-
-@keyframes flashLong {
-  0%,  100% {
-    opacity: 0;
+@keyframes revealVerticalRev {
+  0% {
+    clip: rect(160px,4px,160px,0px);
   }
+  
+  100% {
+    clip: rect(0px,4px,160px,0px);
+  }
+}
 
-  25%, 50%, 75% {
-    opacity: 1;
+@keyframes revealHorizontal {
+  0% {
+    clip: rect(0px,0px,41px,0px);
+	opacity: 1;
+  }
+  
+  100% {
+    clip: rect(0px,430px,41px,0px);
+	opacity: 1;
+  }
+}
+
+@keyframes revealHorizontalRev {
+  0% {
+    clip: rect(0px,120px,50px,120px);
+	opacity: 1;
+  }
+  
+  100% {
+    clip: rect(0px,120px,50px,0px);
+	opacity: 1;
   }
 }
