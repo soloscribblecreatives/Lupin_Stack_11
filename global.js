@@ -158,10 +158,10 @@ if(direction == 'b') {
 }else {
 	
 
-	if(page_id <= 5){
+	if(page_id <= 6){
 		page_id = page_id + 1;
 		//alert(page_id);
-		if(page_id == 6){
+		if(page_id == 7){
             flag=1;
         }
 	}
@@ -251,19 +251,22 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1_1"><img src="slide1/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide1/s1_2.png"/></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
 	case 2:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s1_1"><img src="slide2/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide2/s1_2.png"/></div><div class="s1_3"><img src="slide2/s1_3.png"/></div><div class="s1_4"><img src="slide2/s1_4.png"/></div><div class="s1_5"><img src="slide2/s1_5.png"/></div><div class="s1_6"><img src="slide2/s1_6.png"/></div><div class="s1_7"><img src="slide2/s1_7.png"/></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s1_1"><img src="slide2/s1_1.png" width="1024" height="768" alt=""></div><div class="s1_2"><img src="slide2/s1_2.png"></div><div class="s2_1"><img src="slide2/2.png" width="1024" height="768" alt=""/></div><div class="s2_pop1" onclick="s2_pop1()"></div><div class="s2_2"><img src="slide2/3.png" width="1024" height="768" alt=""/></div><div class="s2_pop2" onclick="s2_pop2()"></div><div class="s2_3"><img src="slide2/4.png" width="1024" height="768" alt=""/></div><div class="s2_pop3" onclick="s2_pop3()"></div><div class="s2_4"><img src="slide2/5.png" width="1024" height="768" alt=""/></div><div class="s2_pop4" onclick="s2_pop4()"></div><div class="s2_c1ose1" onclick="s2_close1()"></div>';
 	break;
-    case 3:
-	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="s1_1"><img src="slide3/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide3/s1_2.png"/></div><div class="s1_3"><img src="slide3/s1_3.png"/></div><div class="s1_4"><img src="slide3/s1_4.png"/></div><div class="s1_5"><img src="slide3/s1_5.png"/></div><div class="s1_6"><img src="slide3/s1_6.png"/></div><div class="s1_7"><img src="slide3/s1_7.png"/></div><div class="s1_8"><img src="slide3/s1_8.png"/></div><div class="s1_9"><img src="slide3/s1_9.png"/></div><div class="s1_10"><img src="slide3/s1_10.png"/></div><div class="s1_11"><img src="slide3/s1_11.png"/></div><div class="s1_12"><img src="slide3/s1_12.png"/></div><div class="s1_13"><img src="slide3/s1_13.png"/></div><div class="s1_14"><img src="slide3/s1_14.png"/></div><div class="s1_15"><img src="slide3/s1_15.png"/></div><div class="s1_16"><img src="slide3/s1_16.png"/></div><div class="s1_17"><img src="slide3/s1_17.png"/></div><div class="s1_18"><img src="slide3/s1_18.png"/></div><div class="s1_19"><img src="slide3/s1_19.png"/></div>';
+	case 3:
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide3/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
-    case 4:
-	content='<link rel="stylesheet" type="text/css" href="slide4/slide4.css" media="screen"/><div class="s1_1"><img src="slide4/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide4/s1_2.png"/></div><div class="s1_3"><img src="slide4/s1_3.png"/></div><div class="s1_4"><img src="slide4/s1_4.png"/></div><div class="s1_5"><img src="slide4/s1_5.png"/></div><div class="s1_6"><img src="slide4/s1_6.png"/></div>';
+	case 4:
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide4/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
 	case 5:
-	content='<link rel="stylesheet" type="text/css" href="slide5/slide5.css" media="screen"/><div class="s1_1"><img src="slide5/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide5/s1_2.png"/></div><div class="s1_3"><img src="slide5/s1_3.png"/></div><div class="s1_4"><img src="slide5/s1_4.png"/></div><div class="s1_5"><img src="slide5/s1_5.png"/></div><div class="s1_6"><img src="slide5/s1_6.png"/></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide5/1.jpg" width="1024" height="768" alt=""></div>';
+	break;
+	case 6:
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="background"><img src="slide6/1.jpg" width="1024" height="768" alt=""></div>';
 	break;
 }
 
@@ -416,3 +419,65 @@ $(document).ready(function(){
 		$('.touchbtn').css("display","block");
 	})
 })
+
+
+
+//----------------------------------//
+
+function pop_open() {
+	$('.popup').css('display','block');
+	$('.pop_open').css('display','none');
+	$('.pop_close').css('display','block');
+}
+
+function pop_close() {
+	$('.popup').css('display','none');
+	$('.pop_open').css('display','block');
+	$('.pop_close').css('display','none');
+}
+
+/*--------------------- animation javascript -----------------------*/
+
+function s2_pop1() {
+	$('.s2_1').css("display","block");
+	$('.s2_c1ose1').css("display","block");
+	$('.s2_pop1').css("display","none");
+}
+
+function s2_pop2() {
+	$('.s2_2').css("display","block");
+	$('.s2_c1ose1').css("display","block");
+	$('.s2_pop2').css("display","none");
+}
+
+function s2_pop3() {
+	$('.s2_3').css("display","block");
+	$('.s2_c1ose1').css("display","block");
+	$('.s2_pop3').css("display","none");
+}
+
+function s2_pop4() {
+	$('.s2_4').css("display","block");
+	$('.s2_c1ose1').css("display","block");
+	$('.s2_pop4').css("display","none");
+}
+
+function s2_close1() {
+	$('.s2_1').css("display","none");
+	$('.s2_2').css("display","none");
+	$('.s2_3').css("display","none");
+	$('.s2_4').css("display","none");
+	$('.s2_c1ose1').css("display","none");
+	$('.s2_pop1').css("display","block");
+	$('.s2_pop2').css("display","block");
+	$('.s2_pop3').css("display","block");
+	$('.s2_pop4').css("display","block");
+}
+
+
+function startAnime() {
+	$('.s1_2').css("display","block");
+	$('.s1_4').removeClass("pulseUp");
+	$('.s1_4').addClass("shiftLeft");
+	$('.s1_5').css("display","block");
+}

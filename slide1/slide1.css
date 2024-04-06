@@ -1,58 +1,188 @@
-*{
-	margin: 0px;
-	padding: 0px;
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.hitDeck {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1024px;
+  height: 768px;
+  z-index: 999;
 }
 
 .s1_1 {
-	position: absolute;
-	width: 1024px;
-	height: 768px;
-	z-index: 1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1024px;
+  height: 768px;
+  z-index: 1;
 }
 
 .s1_2 {
-	position: absolute;
-  left: 59px;
-  top: 415px;
-  width: 428px;
-  height: 41px;
-	animation: revealHorizontal 0.7s;
-	animation-delay: 0.3s;
-	animation-fill-mode: both;
-	clip: rect(0px,0px,41px,0px);
-	z-index: 5;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1024px;
+  height: 768px;
+  animation: fadeIn 1s;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+  display: none;
+  z-index: 2;
 }
 
-@keyframes revealVerticalRev {
-  0% {
-    clip: rect(160px,4px,160px,0px);
+.s1_3 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1024px;
+  height: 74px;
+  animation: fadeInDown 0.5s;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+  z-index: 6;
+}
+
+.s1_4 {
+  position: absolute;
+  left: 248px;
+  top: 114px;
+  width: 528px;
+  height: 600px;
+  z-index: 9;
+}
+
+.pulseUp {
+  animation: pulse 1s infinite;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+}
+
+.shiftLeft {
+  animation: shiftLeft 1s;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+}
+
+.s1_5 {
+  position: absolute;
+  left: 647px;
+  top: 519px;
+  width: 377px;
+  height: 190px;
+  animation: slideInRight 1s;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+  display: none;
+  z-index: 9;
+}
+
+
+
+@keyframes shiftLeft {
+  from {
+	left: 248px;
+	top: 114px;
+	width: 528px;
+	height: 600px;
+	opacity: 1;
   }
-  
-  100% {
-    clip: rect(0px,4px,160px,0px);
+
+  to {
+	left: 38px;
+	top: 114px;
+	width: 528px;
+	height: 600px;
+	opacity: 1;
   }
 }
 
-@keyframes revealHorizontal {
-  0% {
-    clip: rect(0px,0px,41px,0px);
-	opacity: 1;
-  }
-  
-  100% {
-    clip: rect(0px,430px,41px,0px);
-	opacity: 1;
-  }
+
+@keyframes dragIn {
+	from {
+		left: 763px;
+		top: 662px;
+		width: 209px;
+		height: 60px;
+		opacity: 1;
+	}
+	to {
+		left: 322px;
+		top: 489px;
+		width: 372px;
+		height: 106px;
+		opacity: 1;
+	}
 }
 
-@keyframes revealHorizontalRev {
-  0% {
-    clip: rect(0px,120px,50px,120px);
-	opacity: 1;
+
+@-webkit-keyframes stampIn {
+	0% {
+		opacity: 0;
+	}
+	10% {
+		transform-origin: 50% 50%;
+		transform: scale(3);
+		opacity: 0.5;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes stampIn {
+	0% {
+		opacity: 0;
+	}
+	10% {
+		transform-origin: 50% 50%;
+		transform: scale(3);
+		opacity: 0.5;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.stampIn {
+  -webkit-animation-name: stampIn;
+  animation-name: stampIn;
+}
+
+@-webkit-keyframes rotateInLoop {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
+}
+
+@keyframes rotateInLoop {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
+}
+
+.rotateInLoop {
+  -webkit-animation-name: rotateInLoop;
+  animation-name: rotateInLoop;
+}
+
+
+@keyframes flashIn {
+  from, 50%, to {
+    opacity: 0;
   }
-  
-  100% {
-    clip: rect(0px,120px,50px,0px);
-	opacity: 1;
+25%, 75% {
+    opacity: 1;
   }
 }
