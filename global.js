@@ -309,10 +309,10 @@ switch(pg_id){
 	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s1_1"><img src="slide2/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide2/s1_2.png"/></div><div class="s1_3"><img src="slide2/s1_3.png"/></div><div class="s1_4"><img src="slide2/s1_4.png"/></div><div class="s1_5"><img src="slide2/s1_5.png"/></div><div class="s1_6"><img src="slide2/s1_6.png"/></div><div class="s1_7"><img src="slide2/s1_7.png"/></div><div class="s1_8"><img src="slide2/s1_8.png"/></div>';
 	break;
     case 3:
-	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="s1_1"><img src="slide3/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide3/s1_2.gif"/></div><div class="s1_3"><img src="slide3/s1_3.png"/></div><div class="s1_4"><img src="slide3/s1_4.png"/></div><div class="s1_5"><img src="slide3/s1_5.png"/></div><div class="s1_6"><img src="slide3/s1_6.png"/></div><div class="s1_7"><img src="slide3/s1_7.png"/></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="s1_1"><img src="slide3/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide3/s1_2.png"/></div><div class="s1_3"><img src="slide3/s1_3.gif"/></div><div class="s1_4"><img src="slide3/s1_4.png"/></div>';
 	break;
-    case 4:
-	content='<link rel="stylesheet" type="text/css" href="slide4/slide4.css" media="screen"/><div class="s1_1"><img src="slide4/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide4/s1_2.png"/></div><div class="s1_3"><img src="slide4/s1_3.gif"/></div><div class="s1_4"><img src="slide4/s1_4.png"/></div>';
+	case 4:
+	content='<link rel="stylesheet" type="text/css" href="slide4/slide4.css" media="screen"/><div class="s1_1"><img src="slide4/s1_1.png" width="1024" height="768" alt=""/></div><div class="s1_2"><img src="slide4/s1_2.gif"/></div><div class="s1_3"><img src="slide4/s1_3.png"/></div><div class="s1_4"><img src="slide4/s1_4.png"/></div><div class="s1_5"><img src="slide4/s1_5.png"/></div><div class="s1_6"><img src="slide4/s1_6.png"/></div><div class="s1_7"><img src="slide4/s1_7.png"/></div>';
 	break;
 }
 
