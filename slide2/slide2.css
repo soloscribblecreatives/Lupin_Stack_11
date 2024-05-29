@@ -12,10 +12,10 @@
 
 .s2 {
 	position: absolute;
-  left: 398px;
-  top: 457px;
-  width: 54px;
-  height: 65px;
+  left: 373px;
+  top: 504px;
+  width: 264px;
+  height: 75px;
 	animation: flash 0.5s infinite;
 	animation-delay: 0s;
 	animation-fill-mode: both;
