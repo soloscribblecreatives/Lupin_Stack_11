@@ -136,7 +136,7 @@ if(direction == 'b') {
   "callback" : "checkLastPgFn"
   };
 
-	//window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
+	window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
 	
 		//window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
     }else{
@@ -153,16 +153,16 @@ if(direction == 'b') {
   "callback" : "checkLastPgFn"
   };
 
-	//window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
+	window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
 	}
 	
 }else {
 	
 
-	if(page_id <= 2){
+	if(page_id <= 1){
 		page_id = page_id + 1;
 		//alert(page_id);
-		if(page_id == 3){
+		if(page_id == 2){
             flag=1;
         }
 	}
@@ -182,7 +182,7 @@ if(direction == 'b') {
   };
 
 
-	//window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
+	window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
 		 //window.location = "js-call:" + "1" + ":" + encodeURIComponent(JSON.stringify({query:'NODATA', type:'brandNavigation', callback:'checkLastPgFn'}));
     }else{
         localStorage.setItem("gotoNextPrevBrand" ,0);
@@ -198,7 +198,7 @@ if(direction == 'b') {
   "callback" : "checkLastPgFn"
   };
 
-	//window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
+	window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
   
     }
 
@@ -249,11 +249,9 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide1/s2.png"/></div><div class="nav"><img src="slide1/nav.png"/></div><div class="hit_1"><img src="slide1/ref.png" width="1024" height="768" alt=""/></div><div class="hit_pop1" onclick="hit_pop1()"></div><div class="hit_close1" onclick="hit_close1()"></div><div class="takeCover" onclick="takeCover();"></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide1/s2.png"/></div><div class="s3"><img src="slide1/s3.png"/></div><div class="s4"><img src="slide1/s4.png"/></div><div class="s5"><img src="slide1/s5.png"/></div><div class="s6"><img src="slide1/s6.png"/></div><div class="s7"><img src="slide1/s7.png"/></div><div class="s8w"><div class="s8"><img src="slide1/s8.png"/></div></div><div class="s9"><img src="slide1/s9.png"/></div><div class="s10"><img src="slide1/s10.png"/></div><div class="s11"><img src="slide1/s11.png"/></div><div class="s12"><img src="slide1/s12.png"/></div><div class="s13"><img src="slide1/s13.png"/></div>';
 	break;
-	case 2:
-	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s1"><img src="slide2/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide2/s2.png"/></div><div class="nav"><img src="slide1/nav.png"/></div><div class="hit_1"><img src="slide2/ref.png" width="1024" height="768" alt=""/></div><div class="hit_pop1" onclick="hit_pop1()"></div><div class="hit_close1" onclick="hit_close1()"></div><div class="takeCover" onclick="takeCover();"></div>';
-	break;
+
 }
 
 return content;
@@ -292,7 +290,7 @@ function open_page(url,page_id){
   "callback" : "checkLastPgFn"
   };
 
-	//window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
+	window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
 
 	 $("#wrapper").attr("rel",page_id);
 	 var content="";
@@ -405,70 +403,3 @@ $(document).ready(function(){
 		$('.touchbtn').css("display","block");
 	})
 })
-
-
-/*--------------------- animation javascript -----------------------*/
-
-function hit_pop1() {
-	$('.hit_1').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop1').css("display","none");
-}
-
-function hit_pop2() {
-	$('.hit_2').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop2').css("display","none");
-}
-
-function hit_pop3() {
-	$('.hit_3').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop3').css("display","none");
-}
-
-function hit_pop4() {
-	$('.hit_4').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop4').css("display","none");
-}
-
-function hit_pop5() {
-	$('.hit_5').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop5').css("display","none");
-}
-
-function hit_pop6() {
-	$('.hit_6').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop6').css("display","none");
-}
-
-function hit_pop7() {
-	$('.hit_7').css("display","block");
-	$('.hit_close1').css("display","block");
-	$('.hit_pop7').css("display","none");
-}
-
-function hit_close1() {
-	$('.hit_1').css("display","none");
-	$('.hit_2').css("display","none");
-	$('.hit_3').css("display","none");
-	$('.hit_4').css("display","none");
-	$('.hit_5').css("display","none");
-	$('.hit_6').css("display","none");
-	$('.hit_7').css("display","none");
-	$('.hit_pop1').css("display","block");
-	$('.hit_pop2').css("display","block");
-	$('.hit_pop3').css("display","block");
-	$('.hit_pop4').css("display","block");
-	$('.hit_pop5').css("display","block");
-	$('.hit_pop6').css("display","block");
-	$('.hit_pop7').css("display","block");
-	$('.hit_close1').css("display","none");
-}
-
-function takeCover() {
-		open_page("",1);
-}
