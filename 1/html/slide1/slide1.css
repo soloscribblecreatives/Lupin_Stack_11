@@ -100,7 +100,7 @@
   top: 0px;
   width: 383px;
   height: 507px;
-	animation: swingIn 5s infinite;
+	animation: swingIn 5s;
 	animation-delay: 2.5s;
 	animation-fill-mode: both;
 	transform-origin: bottom;
@@ -181,11 +181,11 @@
 @keyframes swingIn {
   0%, 50%, 100% {
     opacity: 1;
-	transform: translateX(-6px) rotateZ(-2deg);
+	transform: translateX(0px) rotateZ(1deg);
   }
 
   25%, 75% {
     opacity: 1;
-	transform: translateX(-6px) rotateZ(3deg);
+	transform: translateX(0px) rotateZ(-1deg);
   }
 }
