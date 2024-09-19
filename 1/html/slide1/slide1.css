@@ -5,8 +5,10 @@
 
 .s1 {
 	position: absolute;
-	width: 1024px;
-	height: 768px;
+  left: 0px;
+  top: 0px;
+  width: 1024px;
+  height: 768px;
 	z-index: 1;
 }
 
@@ -165,6 +167,27 @@
 	animation-delay: 4.5s;
 	animation-fill-mode: both;
 	z-index: 5;
+}
+
+.s14 {
+	position: absolute;
+  left: 66px;
+  top: 627px;
+  width: 249px;
+  height: 65px;
+	animation: fadeInRight 0.7s;
+	animation-delay: 4.5s;
+	animation-fill-mode: both;
+	z-index: 5;
+}
+
+.s15 {
+	position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1024px;
+  height: 768px;
+	z-index: 10;
 }
 
 
