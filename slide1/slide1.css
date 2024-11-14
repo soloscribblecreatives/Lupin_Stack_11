@@ -1,0 +1,71 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.background {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	z-index: 1;
+}
+
+.hand {
+  position: absolute;
+  left: 914px;
+  top: 646px;
+  width: 94px;
+  height: 100px;
+  	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+  z-index: 5;
+}
+
+.stamp {
+  position: absolute;
+  left: 664px;
+  top: 402px;
+  width: 173px;
+  height: 171px;
+  	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+	display: none;
+  z-index: 16;
+}
+
+@keyframes flashLong {
+  0%,  100% {
+    opacity: 0;
+  }
+
+  25%, 50%, 75% {
+    opacity: 1;
+  }
+}
+
+.hit_1  {
+  position: absolute;
+  width: 1024px;
+  height: 768px;
+  display: none;
+  z-index: 15;
+}
+
+.hit_pop1 {
+	position: absolute;
+  left: 853px;
+  top: 614px;
+  width: 171px;
+  height: 154px;
+	z-index: 10;
+}
+
+.hit_close1 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	display: none;
+	z-index: 20;
+}

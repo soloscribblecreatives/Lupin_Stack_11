@@ -1,0 +1,102 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.background {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	z-index: 1;
+}
+
+.pointer {
+  position: absolute;
+  left: 913px;
+  top: 652px;
+  width: 94px;
+  height: 99px;
+  	animation: pulse 1s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+  z-index: 2;
+}
+
+.hand {
+  position: absolute;
+  left: 664px;
+  top: 261px;
+  width: 48px;
+  height: 77px;
+    animation: flash 2s infinite;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+  z-index: 7;
+}
+
+
+.closekol {
+	position: absolute;
+	width: 1024px;
+	height: 200px;
+	display: none;
+	z-index: 9999;
+}
+
+#myVideo {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1024px;
+	height: 768px;
+	z-index: 10;
+	background-color: #000;
+	display: none;
+}
+
+.kol  {
+  position: absolute;
+  left: 621px;
+  top: 227px;
+  width: 133px;
+  height: 161px;
+  z-index: 10;
+}
+
+.stamp {
+  position: absolute;
+  left: 226px;
+  top: 63px;
+  width: 572px;
+  height: 193px;
+  	animation: zoomIn 0.5s;
+	animation-delay: 0s;
+	animation-fill-mode: both;
+	display: none;
+  z-index: 16;
+}
+
+.hit_1  {
+  position: absolute;
+  width: 1024px;
+  height: 768px;
+  display: none;
+  z-index: 15;
+}
+
+.hit_pop1 {
+	position: absolute;
+  left: 853px;
+  top: 614px;
+  width: 171px;
+  height: 154px;
+	z-index: 10;
+}
+
+.hit_close1 {
+	position: absolute;
+	width: 1024px;
+	height: 768px;
+	display: none;
+	z-index: 20;
+}
