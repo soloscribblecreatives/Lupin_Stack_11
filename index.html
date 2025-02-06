@@ -5,7 +5,7 @@
 <meta http-equiv="cache-control" content="max-age=200"/>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
-<title>Blue Eyes</title>
+<title>Camera</title>
 <link rel="stylesheet" type="text/css" href="animate.css" media="screen"/>
 <link rel="stylesheet" type="text/css" href="global.css" media="screen"/>
 
@@ -45,35 +45,27 @@ var selectedContentPath = 'slide1/';
 //  document.getElementById("main_content").innerHTML='<object type="text/html" width="1024px" height="768px" data="'+selectedContentPath+"Dlight1.htm"+'"></object>';
 
 
-$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="controls"><button id="capture">Capture</button><button id="save">Save</button><button id="reset">Reset</button><button id="switchCamera">Switch Camera</button></div>');
+$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><h1>Camera Capture</h1><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div>');
 
-		let video = document.getElementById('camera');
+let video = document.getElementById('camera');
         let canvas = document.getElementById('canvas');
         let context = canvas.getContext('2d');
         let currentStream = null;
-        let usingFrontCamera = true;
+        let facingMode = "user"; // Default to front camera
 
         async function startCamera() {
             try {
-                const constraints = {
-                    video: {
-                        facingMode: usingFrontCamera ? 'user' : 'environment'
-                    }
-                };
-                
                 if (currentStream) {
                     currentStream.getTracks().forEach(track => track.stop());
                 }
-                
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                currentStream = stream;
+                let stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode } });
                 video.srcObject = stream;
+                currentStream = stream;
             } catch (error) {
-                console.error('Error accessing camera:', error);
-                alert('Camera access denied. Please enable permissions.');
+                alert('Error accessing camera: ' + error.message);
             }
         }
-        
+
         document.getElementById('capture').addEventListener('click', () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
@@ -81,25 +73,24 @@ $("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/sli
             video.style.display = 'none';
             canvas.style.display = 'block';
         });
-        
+
         document.getElementById('save').addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = 'captured_image.png';
-            link.click();
+            let imageData = canvas.toDataURL('image/png');
+            localStorage.setItem('capturedImage', imageData);
+            alert('Image saved to local storage!');
         });
-        
+
         document.getElementById('reset').addEventListener('click', () => {
-            canvas.style.display = 'none';
             video.style.display = 'block';
+            canvas.style.display = 'none';
         });
-        
-        document.getElementById('switchCamera').addEventListener('click', () => {
-            usingFrontCamera = !usingFrontCamera;
+
+        document.getElementById('switch').addEventListener('click', () => {
+            facingMode = facingMode === "user" ? "environment" : "user";
             startCamera();
         });
-        
-        startCamera();
+
+        startCamera(); // Start camera on load
 
 });
 </script> 
