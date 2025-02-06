@@ -1,4 +1,4 @@
-		let video = document.getElementById('camera');
+let video = document.getElementById('camera');
         let canvas = document.getElementById('canvas');
         let context = canvas.getContext('2d');
         let currentStream = null;
@@ -26,9 +26,11 @@
         });
 
         document.getElementById('save').addEventListener('click', () => {
-            let imageData = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'captured_image.png';
+            link.click();
             localStorage.setItem('capturedImage', imageData);
-            alert('Image saved to local storage!');
         });
 
         document.getElementById('reset').addEventListener('click', () => {

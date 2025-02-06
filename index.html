@@ -47,7 +47,7 @@ var selectedContentPath = 'slide1/';
 
 $("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><h1>Camera Capture</h1><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div>');
 
-let video = document.getElementById('camera');
+		let video = document.getElementById('camera');
         let canvas = document.getElementById('canvas');
         let context = canvas.getContext('2d');
         let currentStream = null;
@@ -75,9 +75,11 @@ let video = document.getElementById('camera');
         });
 
         document.getElementById('save').addEventListener('click', () => {
-            let imageData = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'captured_image.png';
+            link.click();
             localStorage.setItem('capturedImage', imageData);
-            alert('Image saved to local storage!');
         });
 
         document.getElementById('reset').addEventListener('click', () => {
