@@ -1,53 +1,71 @@
-        let video = document.getElementById('camera');
-        let canvas = document.getElementById('canvas');
+        let video = document.getElementById('cameraFeed');
+        let canvas = document.getElementById('captureCanvas');
         let context = canvas.getContext('2d');
-        let currentStream = null;
+        let stream;
         let usingFrontCamera = true;
 
+        // Function to start the camera
         async function startCamera() {
             try {
-                const constraints = {
+                let constraints = {
                     video: {
+                        width: 1280,
+                        height: 720,
                         facingMode: usingFrontCamera ? 'user' : 'environment'
                     }
                 };
-                
-                if (currentStream) {
-                    currentStream.getTracks().forEach(track => track.stop());
-                }
-                
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                currentStream = stream;
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
                 video.srcObject = stream;
             } catch (error) {
-                console.error('Error accessing camera:', error);
-                alert('Camera access denied. Please enable permissions.');
+                alert('Error accessing the camera: ' + error.message);
             }
         }
-        
-        document.getElementById('capture').addEventListener('click', () => {
+
+        // Capture photo and store in localStorage
+        document.getElementById('captureBtn').addEventListener('click', function() {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Save image in local storage
+            let imageData = canvas.toDataURL('image/png');
+            localStorage.setItem('capturedPhoto', imageData);
+            
+            // Show captured image
             video.style.display = 'none';
             canvas.style.display = 'block';
         });
-        
-        document.getElementById('save').addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = 'captured_image.png';
-            link.click();
-        });
-        
-        document.getElementById('reset').addEventListener('click', () => {
-            canvas.style.display = 'none';
+
+        // Reset to capture new photo
+        document.getElementById('resetBtn').addEventListener('click', function() {
             video.style.display = 'block';
+            canvas.style.display = 'none';
         });
-        
-        document.getElementById('switchCamera').addEventListener('click', () => {
+
+        // Switch between front and back camera
+        document.getElementById('switchBtn').addEventListener('click', function() {
             usingFrontCamera = !usingFrontCamera;
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
             startCamera();
         });
-        
+
+        // Capture full viewport screenshot
+        document.getElementById('screenshotBtn').addEventListener('click', function() {
+            html2canvas(document.body).then(canvas => {
+                let screenshotData = canvas.toDataURL('image/png');
+                localStorage.setItem('viewportScreenshot', screenshotData);
+                alert('Screenshot saved to localStorage!');
+            });
+        });
+
+        // Security: Stop camera when page unloads
+        window.addEventListener('beforeunload', function() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+
+        // Initialize camera on page load
         startCamera();
