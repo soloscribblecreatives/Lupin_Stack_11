@@ -1,55 +1,53 @@
-
-
-        const video = document.getElementById('cameraFeed');
-        const canvas = document.getElementById('photoCanvas');
-        const captureBtn = document.getElementById('captureBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        let stream = null;
+        let video = document.getElementById('camera');
+        let canvas = document.getElementById('canvas');
+        let context = canvas.getContext('2d');
+        let currentStream = null;
+        let usingFrontCamera = true;
 
         async function startCamera() {
             try {
-                stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "environment" },
-                    audio: false
-                });
-
+                const constraints = {
+                    video: {
+                        facingMode: usingFrontCamera ? 'user' : 'environment'
+                    }
+                };
+                
+                if (currentStream) {
+                    currentStream.getTracks().forEach(track => track.stop());
+                }
+                
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                currentStream = stream;
                 video.srcObject = stream;
             } catch (error) {
-                alert("Error accessing camera: " + error.message);
+                console.error('Error accessing camera:', error);
+                alert('Camera access denied. Please enable permissions.');
             }
         }
-
-        captureBtn.addEventListener('click', () => {
-            const context = canvas.getContext('2d');
+        
+        document.getElementById('capture').addEventListener('click', () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            // Stop the camera stream after capturing
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
-
-            video.style.display = "none";
-            canvas.style.display = "block";
-
-            saveImage(canvas);
+            video.style.display = 'none';
+            canvas.style.display = 'block';
         });
-
-        resetBtn.addEventListener('click', () => {
-            canvas.style.display = "none";
-            video.style.display = "block";
+        
+        document.getElementById('save').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'captured_image.png';
+            link.click();
+        });
+        
+        document.getElementById('reset').addEventListener('click', () => {
+            canvas.style.display = 'none';
+            video.style.display = 'block';
+        });
+        
+        document.getElementById('switchCamera').addEventListener('click', () => {
+            usingFrontCamera = !usingFrontCamera;
             startCamera();
         });
-
-        function saveImage(canvas) {
-            const imageURL = canvas.toDataURL("image/png");
-            const link = document.createElement("a");
-            link.href = imageURL;
-            link.download = "captured_image.png";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
+        
         startCamera();
