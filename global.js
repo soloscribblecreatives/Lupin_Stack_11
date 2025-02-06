@@ -249,7 +249,7 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div>  <div id="camera"><video id="video" width="100%" height="100%" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div style="text-align: center;"><button class="button" id="captureButton">Capture</button><button class="button" id="screenshotButton">Capture Screenshot</button><button class="button" id="resetButton">Reset</button><button class="button" id="switchButton">Switch Camera</button></div><canvas id="screenshot-canvas" width="500" height="500"></canvas>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="cameraFeed" autoplay></video><canvas id="captureCanvas" style="display: none;"></canvas></div><div class="controls"><button id="captureBtn">Capture</button><button id="screenshotBtn">Save Screenshot</button><button id="resetBtn">Reset</button><button id="switchBtn">Switch Camera</button></div>';
 	break;
 
 }

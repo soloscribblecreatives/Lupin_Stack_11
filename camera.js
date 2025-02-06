@@ -1,83 +1,71 @@
-    let currentStream = null;
-    let currentDevice = 'user'; // Default to front camera (user-facing)
-    let videoElement = document.getElementById('video');
-    let canvasElement = document.getElementById('canvas');
-    let captureButton = document.getElementById('captureButton');
-    let screenshotButton = document.getElementById('screenshotButton');
-    let resetButton = document.getElementById('resetButton');
-    let switchButton = document.getElementById('switchButton');
-    let screenshotCanvas = document.getElementById('screenshot-canvas');
+        let video = document.getElementById('cameraFeed');
+        let canvas = document.getElementById('captureCanvas');
+        let context = canvas.getContext('2d');
+        let stream;
+        let usingFrontCamera = true;
 
-    // Start the camera
-    function startCamera() {
-      // Stop any previous stream to prevent multiple streams running
-      if (currentStream) {
-        currentStream.getTracks().forEach(track => track.stop());
-      }
+        // Function to start the camera
+        async function startCamera() {
+            try {
+                let constraints = {
+                    video: {
+                        width: 1280,
+                        height: 720,
+                        facingMode: usingFrontCamera ? 'user' : 'environment'
+                    }
+                };
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+            } catch (error) {
+                alert('Error accessing the camera: ' + error.message);
+            }
+        }
 
-      navigator.mediaDevices.getUserMedia({
-        video: { facingMode: currentDevice }
-      })
-      .then(stream => {
-        currentStream = stream;
-        videoElement.srcObject = stream;
-      })
-      .catch(err => {
-        console.error("Camera error: ", err);
-        alert("Unable to access the camera.");
-      });
-    }
+        // Capture photo and store in localStorage
+        document.getElementById('captureBtn').addEventListener('click', function() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Save image in local storage
+            let imageData = canvas.toDataURL('image/png');
+            localStorage.setItem('capturedPhoto', imageData);
+            
+            // Show captured image
+            video.style.display = 'none';
+            canvas.style.display = 'block';
+        });
 
-    // Capture the photo
-    captureButton.addEventListener('click', function() {
-      // Draw the current video frame to the canvas
-      let context = canvasElement.getContext('2d');
-      context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+        // Reset to capture new photo
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            video.style.display = 'block';
+            canvas.style.display = 'none';
+        });
 
-      // Save the photo in local storage
-      let photoData = canvasElement.toDataURL('image/png');
-      localStorage.setItem('capturedPhoto', photoData);
+        // Switch between front and back camera
+        document.getElementById('switchBtn').addEventListener('click', function() {
+            usingFrontCamera = !usingFrontCamera;
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            startCamera();
+        });
 
-      // Display the captured photo in the same circular window
-      let photo = new Image();
-      photo.src = photoData;
-      photo.onload = function() {
-        canvasElement.style.display = 'block';
-        context.drawImage(photo, 0, 0, canvasElement.width, canvasElement.height);
-      };
-    });
+        // Capture full viewport screenshot
+        document.getElementById('screenshotBtn').addEventListener('click', function() {
+            html2canvas(document.body).then(canvas => {
+                let screenshotData = canvas.toDataURL('image/png');
+                localStorage.setItem('viewportScreenshot', screenshotData);
+                alert('Screenshot saved to localStorage!');
+            });
+        });
 
-    // Take screenshot of the screen
-    screenshotButton.addEventListener('click', function() {
-      let context = screenshotCanvas.getContext('2d');
-      context.clearRect(0, 0, screenshotCanvas.width, screenshotCanvas.height);
+        // Security: Stop camera when page unloads
+        window.addEventListener('beforeunload', function() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
 
-      // Capture a screenshot of the device screen using HTML5 canvas
-      context.drawImage(videoElement, 0, 0, screenshotCanvas.width, screenshotCanvas.height);
-
-      // Save screenshot to localStorage
-      let screenshotData = screenshotCanvas.toDataURL('image/png');
-      localStorage.setItem('screenShot', screenshotData);
-    });
-
-    // Reset the camera view
-    resetButton.addEventListener('click', function() {
-      canvasElement.style.display = 'none';
-      startCamera();
-    });
-
-    // Switch the camera between front and back
-    switchButton.addEventListener('click', function() {
-      currentDevice = (currentDevice === 'user') ? 'environment' : 'user';
-      startCamera();
-    });
-
-    // Start the camera when the page loads
-    window.onload = function() {
-      startCamera();
-    };
-
-    // Security: Ensure access is only granted to trusted websites and apps
-    if (!window.isSecureContext) {
-      alert("For security reasons, this application must be served over HTTPS.");
-    }
+        // Initialize camera on page load
+        startCamera();
