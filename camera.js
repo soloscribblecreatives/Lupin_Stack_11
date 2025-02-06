@@ -1,71 +1,51 @@
-        let video = document.getElementById('cameraFeed');
-        let canvas = document.getElementById('captureCanvas');
-        let context = canvas.getContext('2d');
-        let stream;
-        let usingFrontCamera = true;
+let video = document.getElementById('cameraFeed');
+        let canvas = document.getElementById('canvas');
+        let captureBtn = document.getElementById('captureBtn');
+        let resetBtn = document.getElementById('resetBtn');
+        let switchCameraBtn = document.getElementById('switchCameraBtn');
+        let stream = null;
+        let currentFacingMode = 'user'; // 'user' for front, 'environment' for back
 
-        // Function to start the camera
         async function startCamera() {
             try {
-                let constraints = {
-                    video: {
-                        width: 1280,
-                        height: 720,
-                        facingMode: usingFrontCamera ? 'user' : 'environment'
-                    }
-                };
-                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                // Stop any existing camera stream
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: currentFacingMode }
+                });
+
                 video.srcObject = stream;
             } catch (error) {
-                alert('Error accessing the camera: ' + error.message);
+                console.error("Error accessing camera:", error);
+                alert("Camera access denied. Please allow camera permissions.");
             }
         }
 
-        // Capture photo and store in localStorage
-        document.getElementById('captureBtn').addEventListener('click', function() {
+        captureBtn.addEventListener('click', () => {
+            let ctx = canvas.getContext('2d');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // Save image in local storage
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
             let imageData = canvas.toDataURL('image/png');
-            localStorage.setItem('capturedPhoto', imageData);
-            
-            // Show captured image
-            video.style.display = 'none';
-            canvas.style.display = 'block';
+
+            // Save to local storage
+            localStorage.setItem('capturedImage', imageData);
+
+            alert("Photo saved successfully!");
         });
 
-        // Reset to capture new photo
-        document.getElementById('resetBtn').addEventListener('click', function() {
-            video.style.display = 'block';
-            canvas.style.display = 'none';
-        });
-
-        // Switch between front and back camera
-        document.getElementById('switchBtn').addEventListener('click', function() {
-            usingFrontCamera = !usingFrontCamera;
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
+        resetBtn.addEventListener('click', () => {
             startCamera();
         });
 
-        // Capture full viewport screenshot
-        document.getElementById('screenshotBtn').addEventListener('click', function() {
-            html2canvas(document.body).then(canvas => {
-                let screenshotData = canvas.toDataURL('image/png');
-                localStorage.setItem('viewportScreenshot', screenshotData);
-                alert('Screenshot saved to localStorage!');
-            });
+        switchCameraBtn.addEventListener('click', () => {
+            currentFacingMode = currentFacingMode === 'user' ? 'environment' : 'user';
+            startCamera();
         });
 
-        // Security: Stop camera when page unloads
-        window.addEventListener('beforeunload', function() {
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
-        });
-
-        // Initialize camera on page load
+        // Start the camera when the page loads
         startCamera();
