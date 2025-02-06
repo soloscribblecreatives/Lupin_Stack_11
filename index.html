@@ -1,55 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta http-equiv="cache-control" content="max-age=200"/>
-<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<title>Rcifax</title>
-<link rel="stylesheet" type="text/css" href="animate.css" media="screen"/>
-<link rel="stylesheet" type="text/css" href="global.css" media="screen"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Camera Capture</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+        }
 
-<script src="jquery.min.js" type="text/javascript" language="javascript"></script>
-<script src="jquery.mobile.custom.min.js" type="text/javascript" language="javascript"></script>
-<script src="jquery.touchSwipe.min.js" type="text/javascript" language="javascript"></script>
+        .camera-container {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 5px solid #333;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        video, canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
 <body>
-<div id="wrapper" rel="1">
-  <div class="menu"> <img src="menu.png" width="37" alt=""> </div>
-  <div class="slide_arrow">
-    <div class="left_arrow" ><img src="left_arrow.png" alt="previous icon" width="23" height="23" ></div>
-    <div class="right_arrow" ><img src="right_arrow.png" alt="next icon" width="23" height="23"></div>
-  </div>
-  <div id="main_content"></div>
-  <div class="reference active">
-    <div class="box">
-      <div class="slide_jumper">
-		  <div class="slides"><img src="thumbs/01.png" alt=""></div>
-          <div class="slides"><img src="thumbs/02.png" alt=""></div>
-          <div class="slides"><img src="thumbs/03.png" alt=""></div>
-          <div class="slides"><img src="thumbs/04.png" alt=""></div>     
-      </div>
+
+    <div class="camera-container">
+        <video id="camera" autoplay playsinline></video>
+        <canvas id="canvas" hidden></canvas>
     </div>
-    <div class="box_btn"></div>
-  </div>
-</div>
-<div id="myconsole"></div>
-<div id="click_through" > </div>
-<script src="global.js" type="text/javascript" language="javascript"></script> 
-<script>
-$(document).ready(function(){
-  // jQuery(".next").bind(event, function(){
-  //     document.location = 'VoltarenVAsb/VoltarenVAsb.html';
-  //     });
-var selectedContentPath = 'slide1/';
-//  document.getElementById("main_content").innerHTML='<object type="text/html" width="1024px" height="768px" data="'+selectedContentPath+"Dlight1.htm"+'"></object>';
+    
+    <div class="controls">
+        <button id="capture">Capture</button>
+    </div>
 
+    <script>
+        const video = document.getElementById("camera");
+        const canvas = document.getElementById("canvas");
+        const captureButton = document.getElementById("capture");
 
-$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1024" height="768" alt=""/></div><div class="s2"><img src="slide1/s2.png"/></div><div class="s3"><img src="slide1/s3.png"/></div>');
+        async function openCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "user" }, // Use front camera
+                    audio: false
+                });
 
-});
-</script> 
+                video.srcObject = stream;
+            } catch (error) {
+                alert("Camera access denied! Please allow camera access.");
+                console.error("Error accessing the camera:", error);
+            }
+        }
+
+        captureButton.addEventListener("click", () => {
+            const context = canvas.getContext("2d");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            video.style.display = "none"; // Hide video preview
+            canvas.hidden = false; // Show captured image
+        });
+
+        // Security: Stop video stream when page is closed
+        window.addEventListener("beforeunload", () => {
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(track => track.stop());
+            }
+        });
+
+        // Initialize camera on page load
+        openCamera();
+    </script>
 
 </body>
 </html>
