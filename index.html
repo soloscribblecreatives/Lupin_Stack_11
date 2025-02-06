@@ -46,44 +46,62 @@ var selectedContentPath = 'slide1/';
 //  document.getElementById("main_content").innerHTML='<object type="text/html" width="1024px" height="768px" data="'+selectedContentPath+"Dlight1.htm"+'"></object>';
 
 
-$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="camera" autoplay playsinline></video><canvas id="canvas" hidden></canvas></div><div class="controls"><button id="capture">Capture</button></div>');
-const video = document.getElementById("camera");
-        const canvas = document.getElementById("canvas");
-        const captureButton = document.getElementById("capture");
+$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="cameraFeed" autoplay playsinline></video><canvas id="photoCanvas" style="display:none;"></canvas></div><div class="buttons"><button class="capture" id="captureBtn">Capture</button><button class="reset" id="resetBtn">Reset</button></div>');
 
-        async function openCamera() {
+const video = document.getElementById('cameraFeed');
+        const canvas = document.getElementById('photoCanvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        let stream = null;
+
+        async function startCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user" }, // Use front camera
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "environment" },
                     audio: false
                 });
 
                 video.srcObject = stream;
             } catch (error) {
-                alert("Camera access denied! Please allow camera access.");
-                console.error("Error accessing the camera:", error);
+                alert("Error accessing camera: " + error.message);
             }
         }
 
-        captureButton.addEventListener("click", () => {
-            const context = canvas.getContext("2d");
+        captureBtn.addEventListener('click', () => {
+            const context = canvas.getContext('2d');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            video.style.display = "none"; // Hide video preview
-            canvas.hidden = false; // Show captured image
-        });
 
-        // Security: Stop video stream when page is closed
-        window.addEventListener("beforeunload", () => {
-            if (video.srcObject) {
-                video.srcObject.getTracks().forEach(track => track.stop());
+            // Stop the camera stream after capturing
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
             }
+
+            video.style.display = "none";
+            canvas.style.display = "block";
+
+            saveImage(canvas);
         });
 
-        // Initialize camera on page load
-        openCamera();
+        resetBtn.addEventListener('click', () => {
+            canvas.style.display = "none";
+            video.style.display = "block";
+            startCamera();
+        });
+
+        function saveImage(canvas) {
+            const imageURL = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = imageURL;
+            link.download = "captured_image.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        startCamera();
+
 });
 </script> 
 

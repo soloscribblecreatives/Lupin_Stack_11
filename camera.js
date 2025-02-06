@@ -1,39 +1,55 @@
 
 
-        const video = document.getElementById("camera");
-        const canvas = document.getElementById("canvas");
-        const captureButton = document.getElementById("capture");
+        const video = document.getElementById('cameraFeed');
+        const canvas = document.getElementById('photoCanvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        let stream = null;
 
-        async function openCamera() {
+        async function startCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user" }, // Use front camera
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "environment" },
                     audio: false
                 });
 
                 video.srcObject = stream;
             } catch (error) {
-                alert("Camera access denied! Please allow camera access.");
-                console.error("Error accessing the camera:", error);
+                alert("Error accessing camera: " + error.message);
             }
         }
 
-        captureButton.addEventListener("click", () => {
-            const context = canvas.getContext("2d");
+        captureBtn.addEventListener('click', () => {
+            const context = canvas.getContext('2d');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            video.style.display = "none"; // Hide video preview
-            canvas.hidden = false; // Show captured image
-        });
 
-        // Security: Stop video stream when page is closed
-        window.addEventListener("beforeunload", () => {
-            if (video.srcObject) {
-                video.srcObject.getTracks().forEach(track => track.stop());
+            // Stop the camera stream after capturing
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
             }
+
+            video.style.display = "none";
+            canvas.style.display = "block";
+
+            saveImage(canvas);
         });
 
-        // Initialize camera on page load
-        openCamera();
+        resetBtn.addEventListener('click', () => {
+            canvas.style.display = "none";
+            video.style.display = "block";
+            startCamera();
+        });
+
+        function saveImage(canvas) {
+            const imageURL = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = imageURL;
+            link.download = "captured_image.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        startCamera();
