@@ -1,4 +1,6 @@
-let video = document.getElementById('camera');
+function runAnimation() {
+	window.requestAnimationFrame(function () {	
+		let video = document.getElementById('camera');
         let canvas = document.getElementById('canvas');
         let context = canvas.getContext('2d');
         let currentStream = null;
@@ -43,4 +45,6 @@ let video = document.getElementById('camera');
             startCamera();
         });
 
-        startCamera(); // Start camera on load
+        startCamera(); // Start camera on load		
+	});
+}

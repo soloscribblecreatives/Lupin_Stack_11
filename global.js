@@ -249,7 +249,7 @@ currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><br><br><h1>Camera Capture</h1><br><br><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div><script>runAnimation();</script>';
 	break;
 
 }

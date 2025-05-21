@@ -49,7 +49,6 @@ strong {
 i, em {
 	font-style: italic;
 }
-
 .clearfix:after {
 	content: ".";
 	display: block;
@@ -76,6 +75,15 @@ html[xmlns] .clearfix {
 	background-size: 100% auto;
 	position: relative;
 	overflow: hidden;
+}
+#main_content {
+	position: absolute;
+	width: 100%;
+	max-width: 1024px;
+	height: 100%;
+	min-height: 768px;
+	margin: 0 auto;
+	background-size: 100% auto;
 }
 #wrapper .left_arrow, #wrapper .right_arrow {
 	opacity: 0;

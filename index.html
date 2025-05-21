@@ -45,54 +45,9 @@ var selectedContentPath = 'slide1/';
 //  document.getElementById("main_content").innerHTML='<object type="text/html" width="1024px" height="768px" data="'+selectedContentPath+"Dlight1.htm"+'"></object>';
 
 
-$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><br><br><h1>Camera Capture</h1><br><br><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div>');
+$("#main_content").html('<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div>');
 
-		let video = document.getElementById('camera');
-        let canvas = document.getElementById('canvas');
-        let context = canvas.getContext('2d');
-        let currentStream = null;
-        let facingMode = "user"; // Default to front camera
-
-        async function startCamera() {
-            try {
-                if (currentStream) {
-                    currentStream.getTracks().forEach(track => track.stop());
-                }
-                let stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode } });
-                video.srcObject = stream;
-                currentStream = stream;
-            } catch (error) {
-                alert('Error accessing camera: ' + error.message);
-            }
-        }
-
-        document.getElementById('capture').addEventListener('click', () => {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            video.style.display = 'none';
-            canvas.style.display = 'block';
-        });
-
-        document.getElementById('save').addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = 'captured_image.png';
-            link.click();
-            localStorage.setItem('capturedImage', imageData);
-        });
-
-        document.getElementById('reset').addEventListener('click', () => {
-            video.style.display = 'block';
-            canvas.style.display = 'none';
-        });
-
-        document.getElementById('switch').addEventListener('click', () => {
-            facingMode = facingMode === "user" ? "environment" : "user";
-            startCamera();
-        });
-
-        startCamera(); // Start camera on load
+runAnimation(); /* runAnimation() is the function called from camera.js file which has minified js */
 
 });
 </script> 
