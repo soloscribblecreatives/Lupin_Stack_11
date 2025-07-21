@@ -1,0 +1,44 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.s1 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1080px;
+  height: 810px;
+  z-index: 1;
+}
+
+.s2 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1080px;
+  height: 810px;
+  display: none;
+  z-index: 15;
+}
+
+.s3 {
+  position: absolute;
+  left: 614px;
+  top: 260px;
+  width: 61px;
+  height: 48px;
+  animation: flash 2s infinite;
+  animation-delay: 0s;
+  animation-fill-mode: both;
+  z-index: 5;
+}
+
+.hit {
+  position: absolute;
+  left: 358px;
+  top: 186px;
+  width: 363px;
+  height: 149px;
+  z-index: 10;
+}

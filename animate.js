@@ -1,7 +1,67 @@
 function runAnimation() {
   window.requestAnimationFrame(function () {
 
-const canvas=document.getElementById("gameCanvas"),ctx=canvas.getContext("2d"),images={},imageSources={"CV Risk":"./slide2/cv-risk.png","Renal Risk":"./slide2/renal-risk.png",Pain:"./slide2/pain.png","GI Comp":"./slide2/gi-comp.png"},balls=[],projectiles=[];function loadImages(e){let a=0;const t=Object.keys(imageSources).length;for(let i in imageSources)images[i]=new Image,images[i].src=imageSources[i],images[i].onload=()=>{a++,a===t&&e()}}function createBall(){const e=Object.keys(images),a=e[Math.floor(Math.random()*e.length)],t=images[a],i=150*(t.naturalHeight/t.naturalWidth);balls.push({x:Math.random()*(canvas.width-150),y:-i,dx:2*(Math.random()-.5),dy:1+Math.random(),className:a,width:150,height:i,opacity:1})}function createProjectile(e){for(let a=0;a<5;a++)projectiles.push({x:Math.random()*canvas.width,y:canvas.height-60,dy:-3-2*Math.random(),origin:e})}function updateBalls(){for(let e of balls)e.x+=e.dx,e.y+=e.dy}function updateProjectiles(){for(let e of projectiles)e.y+=e.dy}function checkCollisions(){projectiles.forEach((e=>{balls.forEach((a=>{e.x>a.x&&e.x<a.x+a.width&&e.y>a.y&&e.y<a.y+a.height&&("Pain"===a.className?a.opacity=0:"proxym"===e.origin?(a.width*=.8,a.height*=.8):"coxibs"===e.origin&&"Renal Risk"===a.className&&(a.width*=.6,a.height*=.6))}))}))}function drawBalls(){for(let e of balls)ctx.globalAlpha=e.opacity,ctx.drawImage(images[e.className],e.x,e.y,e.width,e.height),ctx.globalAlpha=1}function drawProjectiles(){ctx.fillStyle="black";for(let e of projectiles)ctx.beginPath(),ctx.arc(e.x,e.y,5,0,2*Math.PI),ctx.fill()}function gameLoop(){ctx.clearRect(0,0,canvas.width,canvas.height),updateBalls(),updateProjectiles(),checkCollisions(),drawBalls(),drawProjectiles(),requestAnimationFrame(gameLoop)}document.getElementById("proxym").onclick=()=>createProjectile("proxym"),document.getElementById("coxibs").onclick=()=>createProjectile("coxibs"),document.getElementById("nsaids").onclick=()=>createProjectile("nsaids"),loadImages((()=>{setInterval(createBall,800),gameLoop()}));
+	const currentYear = 2025;
+
+	// Force only numeric input in the textbox
+	document.getElementById("enterYear").addEventListener("input", function (e) {
+	this.value = this.value.replace(/\D/g, '');
+	});
+	
+	window.onload = function() {
+	let e = localStorage.getItem("yearDiff");
+	if (e) {
+		document.getElementById("yearValue").textContent = e.padStart(2, "0");
+		let t = `year${e}.png`;
+		document.getElementById("yearImage").src = t, document.getElementById("yearCount").style.display = "block"
+	}
+	}, document.getElementById("calcResult").addEventListener("click", function() {
+	let e = document.getElementById("enterYear").value.trim(),
+		t = document.getElementById("dataAlert"),
+		n = document.getElementById("yearValue"),
+		a = document.getElementById("yearCount"),
+		r = document.getElementById("yearImage");
+	if (t.textContent = "", isNaN(e)) {
+		t.textContent = "Entered value is not a number. Please try again!";
+		return
+	}
+	if (e.length > 4) {
+		t.textContent = "Invalid value, number cannot exceed 4-digits. Please try again!";
+		return
+	}
+	if (e.length < 4) {
+		t.textContent = "Invalid value, number cannot be lower than 4-digits. Please try again!";
+		return
+	}
+	if (e.length <= 4) {
+		document.getElementById("s2").style.display = "block";
+		document.getElementById("yearValue").style.display = "block";
+		document.getElementById("enterYear").style.display = "none";
+		document.getElementById("calcResult").style.display = "none";
+	}
+	let l = parseInt(e, 10);
+	if (l > 2025) {
+		document.getElementById("s2").style.display = "none";
+		document.getElementById("yearValue").style.display = "none";
+		document.getElementById("enterYear").style.display = "block";
+		document.getElementById("calcResult").style.display = "block";
+		t.textContent = "Invalid value, number entered is higher than the current year. Please try again!";
+		return
+	}
+	if (l < 2000) {
+		document.getElementById("s2").style.display = "none";
+		document.getElementById("yearValue").style.display = "none";
+		document.getElementById("enterYear").style.display = "block";
+		document.getElementById("calcResult").style.display = "block";
+		t.textContent = "Invalid value, number entered is older than the product launch. Please try again!";
+		return
+	}
+	let i = 2025 - l,
+		y = i.toString().padStart(2, "0");
+	n.textContent = y;
+	let d = `year${i}.png`;
+	r.src = d, a.style.display = "block", localStorage.setItem("yearDiff", y)
+	});
 
   });
 }

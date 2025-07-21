@@ -1,11 +1,11 @@
 /*Code by android developers start here*/
+
 var startLoc = null;
 //var contentName = '152';
 //step 1:-
 var contentName = parseInt(localStorage.getItem("currentbrand"));
 var currentContentId  = parseInt(localStorage.getItem('currentcontent'));
 //ends
-
 checkClickThrough();
 
 document.getElementById("main_content").addEventListener("touchmove", touchHandler, false);
@@ -69,6 +69,7 @@ function touchHandler(e) {
 
 		$("#main_content").swipe({
 	   swipeLeft:function(event, direction, distance, duration, fingerCount) {
+		
 		//alert("swipeleft");
 		//myconsole("swipeleft");
 		var page_id =  parseInt($("#wrapper").attr("rel"));
@@ -82,6 +83,7 @@ function touchHandler(e) {
 	  },
 
 	  swipeRight:function(event, direction, distance, duration, fingerCount) {
+		
 			//alert("swiperight");
 		//myconsole("swiperight");
 		var page_id =  parseInt($("#wrapper").attr("rel"));
@@ -100,10 +102,7 @@ function touchHandler(e) {
         //Default is 75px, set to 0 for demo so any distance triggers swipe
          threshold:0
 	});
-
-
 });
-
 
 function go_nav(direction) {
 var page_id =  parseInt($("#wrapper").attr("rel"));
@@ -159,10 +158,10 @@ if(direction == 'b') {
 }else {
 	
 
-	if(page_id <= 1){
+	if(page_id <= 3){
 		page_id = page_id + 1;
 		//alert(page_id);
-		if(page_id == 2){
+		if(page_id == 4){
             flag=1;
         }
 	}
@@ -244,14 +243,22 @@ var pg_content = set_pg_content(page_id);
 }
 
 function set_pg_content(pg_id){
+//step 6:-
+//console.log("++++++++pg_id++++"+pg_id+"+++++++currentslide++++++"+localStorage.getItem("currentslide")+"++++++previousslide++++++"+localStorage.getItem("previousslide"));
+		
 $(".reference").removeClass("active");
 currentSlide();
 var selectedContentPath='';
 switch(pg_id){
 	case 1:
-	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="background"><img src="slide1/1.jpg" width="1024" height="768" alt=""></div><div class="camera-container"><video id="camera" autoplay></video><canvas id="canvas" style="display: none;"></canvas></div><div class="buttons"><button id="capture">📸 Capture</button><button id="save">💾 Save</button><button id="reset">🔄 Reset</button><button id="switch">🔄 Switch Camera</button></div><script>runAnimation();</script>';
+	content='<link rel="stylesheet" type="text/css" href="slide1/slide1.css" media="screen"/><div class="s1"><img src="slide1/s1.png" width="1080" height="810" alt=""/></div>';
 	break;
-
+	case 2:
+	content='<link rel="stylesheet" type="text/css" href="slide2/slide2.css" media="screen"/><div class="s1"><img src="slide2/s1.png" width="1080" height="810"/></div><div class="s2"><img src="slide2/s2.png" width="1080" height="810" alt=""/></div><div class="s3"><img src="slide2/s3.png"></div><div class="hit" onclick="hit()"></div>';
+	break;
+	case 3:
+	content='<link rel="stylesheet" type="text/css" href="slide3/slide3.css" media="screen"/><div class="s1" id="s1"><img src="slide3/s1.png" width="1080" height="810" alt=""/></div><div class="s2" id="s2"><img src="slide3/s2.png" width="1080" height="810" alt=""/></div><div class="dataAlert" id="dataAlert"></div><input type="text" class="enterYear" id="enterYear" placeholder="" maxlength="4"/><button class="calcResult" id="calcResult">NEXT</button><div class="yearValue" id="yearValue">00</div><div class="yearCount" id="yearCount"><img src="" id="yearImage" alt="Year Image"></div><script>runAnimation();</script>';
+	break;
 }
 
 return content;
@@ -264,6 +271,7 @@ function showDiv() {
 function showDiv2() {
    document.getElementById('welcomeDiv2').style.display = "block";
 }
+
 
 function open_page(url,page_id){
 	 //alert("===openpage====");
@@ -291,7 +299,7 @@ function open_page(url,page_id){
   };
 
 	window.messageHandler.postMessage(JSON.stringify(params)); //pageswipe
-
+	
 	 $("#wrapper").attr("rel",page_id);
 	 var content="";
 	 var pg_content = set_pg_content(page_id);
@@ -335,6 +343,7 @@ function open_page(url,page_id){
     if(currentslide == 2){
 	document.getElementById("click_through").innerHTML='';
 		}
+
 	}
 
 	function checkBtns(refNum){
@@ -391,8 +400,6 @@ function currentTimeInDatabaseFormat(){//to get current time in dd-mm-yyyy hh:mm
 	return duration;
 }
 
-// new js
-
 $(document).ready(function(){
 	$('body').on('click','.touchbtn',function(){
 		$('.right_arrow').trigger( "click" );
@@ -403,3 +410,11 @@ $(document).ready(function(){
 		$('.touchbtn').css("display","block");
 	})
 })
+
+/*--------------------- animation javascript -----------------------*/
+
+function hit() {
+	$('.hit').css("display","none");
+	$('.s2').css("display","block");
+	$('.s3').css("display","none");
+}

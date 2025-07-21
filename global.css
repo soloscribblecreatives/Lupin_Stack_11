@@ -9,8 +9,8 @@ body {
 }
 #container {
 	position: absolute;
-	width: 1280px;
-	height: 726px;
+	width: 1080px;
+	height: 810px;
 	background-color: #232E3D;
 	font-family: 'DINOT', 'Helvetica Neue', sans-serif;
 	overflow: hidden;
@@ -49,6 +49,7 @@ strong {
 i, em {
 	font-style: italic;
 }
+
 .clearfix:after {
 	content: ".";
 	display: block;
@@ -68,22 +69,13 @@ html[xmlns] .clearfix {
 }
 #wrapper {
 	width: 100%;
-	max-width: 1024px;
+	max-width: 1080px;
 	height: 100%;
-	min-height: 768px;
+	min-height: 810px;
 	margin: 0 auto;
 	background-size: 100% auto;
 	position: relative;
 	overflow: hidden;
-}
-#main_content {
-	position: absolute;
-	width: 100%;
-	max-width: 1024px;
-	height: 100%;
-	min-height: 768px;
-	margin: 0 auto;
-	background-size: 100% auto;
 }
 #wrapper .left_arrow, #wrapper .right_arrow {
 	opacity: 0;
@@ -98,9 +90,9 @@ html[xmlns] .clearfix {
 }
 #wrapper[rel~="2"] {
 	width: 100%;
-	max-width: 1024px;
+	max-width: 1080px;
 	height: 100%;
-	min-height: 768px;
+	min-height: 810px;
 	margin: 0 auto;
 	background-size: 100% auto;
 	position: relative;
@@ -149,7 +141,7 @@ html[xmlns] .clearfix {
 }
 .reference .box {
 	position: absolute;
-	width: 1024px;
+	width: 1080px;
 	margin: 0 auto;
 	padding: 0px 0px 0px;
 	border: 1px solid #ccc;	
