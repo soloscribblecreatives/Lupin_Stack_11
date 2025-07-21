@@ -22,6 +22,11 @@
 	z-index: 5;
 }
 
+@font-face {
+	font-family: "ArialAlert";
+    src: url("../fonts/arial-bold-italic.ttf") format("truetype");
+}
+
 #dataAlert {
     position: absolute;
 	margin: 0px auto;
@@ -30,8 +35,9 @@
     width: 1080px;
     height: 34px;
     color: red;
+	font-family: "ArialAlert";
 	font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 700;
 	text-align: center;
 	z-index: 10;
 }
@@ -51,7 +57,7 @@
 	font-size: 5em;
 	font-weight: 900;
 	text-align: left;
-	color: #dddddd;
+	color: #6a6a6a;
 	letter-spacing: 22.5px;
 	line-height: baseline;
 	border: none;
@@ -102,6 +108,9 @@
 	top: 188px;
     width: 82px;
     height: 82px;
+	animation: zoomIn 0.3s;
+	animation-delay: 0.3s;
+	animation-fill-mode: both;
 	display: none;
 	z-index: 10;
 }
